@@ -14,14 +14,24 @@ class Damage_Item(Item):
     def __init__(self, name, price, desc, damage):
         super().__init__(name, price, desc)
         self.damage = damage
+    def check_damage(self):
+        print(f"Damage: {self.damage}")
     def check_stats(self):
         self.check()
-        print(f"Damage: {self.damage}")
+        self.check_damage()
+    def use(self):
+        print(f"You used {self.name}.")
+        print(f"You did {self.damage} damage.")
 
 class Heal_Item(Item):
     def __init__(self, name, price, desc, health):
         super().__init__(name, price, desc)
         self.health = health
+    def check_health(self):
+        print(f"Health: {self.health}")
     def check_stats(self):
         self.check()
-        print(f"Health Gain: {self.health}")
+        self.check_health()
+    def use(self):
+            print(f"You used {self.name}.")
+            print(f"You healed {self.health} HP.")

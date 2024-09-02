@@ -8,5 +8,17 @@ class Character:
         self.dialogue = dialogue
         self.race = race
 
+    def section_box(self, section):
+        print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
+        print(section)
+        print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n")
+
     def interact(self):
-        print(self.dialogue + "\n")
+        section_content = (f'{self.name}: "{self.dialogue}"\n\n'
+                           f'Description: {self.desc}\n'
+                           f'Inventory: {self.inv}\n'
+                           f'HP: {self.hp}\n'
+                           f'Power: {self.power}\n'
+                           f'Race: {self.race}')
+        
+        self.section_box(section_content)
