@@ -11,14 +11,13 @@ class Character:
     def section_box(self, section):
         print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
         print(section)
-        print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n")
+        print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
 
     def interact(self):
         section_content = (f'{self.name}: "{self.dialogue}"\n\n'
                            f'Description: {self.desc}\n'
-                           f'Inventory: {self.inv}\n'
+                           f'Inventory: {[item.name for item in self.inv]}\n'
                            f'HP: {self.hp}\n'
                            f'Power: {self.power}\n'
                            f'Race: {self.race}')
-        
         self.section_box(section_content)
