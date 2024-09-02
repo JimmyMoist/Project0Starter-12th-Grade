@@ -4,6 +4,7 @@ from player import Player
 from character import Character
 from item import *
 from scene import Scene
+from time import sleep
 
 # Introduction
 print(r"""_______   ________  ________  ________  ________  ________  ________  ________  ________
@@ -25,9 +26,9 @@ print(r"""
        /___/                                                                   
 """)
 
-print("*************************************************************************************************************************************************")
+print("-------------------------------------------------------------------------------------------------------------------------------------------------")
 print("Welcome to The Game! You are a young adventurer who has just started their journey. You are on a quest to find the legendary binary tree of life.\nYou will encounter many challenges and obstacles on your journey, but with courage and determination, you will be able to overcome them all.")
-print("*************************************************************************************************************************************************")
+print("-------------------------------------------------------------------------------------------------------------------------------------------------")
 
 # Items
 commodore_64 = Item("Commodore 64", 100, "An old-ass computer")
@@ -48,12 +49,107 @@ linus_torvalds = Character("Linus Torvalds", "Don't break userspace around him",
 merchant_of_death = Character("Merchant", "Got traded for Brittney Griner", [sword, grenade], 100, 10, "I am the Merchant of Death, and let’s just say I have a flair for the dramatic. Whether it's a sword or a grenade, I’ve got the tools to make a statement. Life’s short, so why not live it on the edge? If you’re looking for excitement, danger, and maybe a touch of chaos, you’ve come to the right place. Now, who’s up for a bit of mayhem?", "death")
 
 # Scenes
-suburban_neighborhood = Scene("Suburban Neighborhood", "A quiet suburban neighborhood with neatly trimmed lawns and white picket fences.", [terry_davis], [])
-forest = Scene("Forest", "A dense forest with towering trees and the sound of birds chirping.", [chris_chan], [])
-locked_gate = Scene("Locked Gate", "A large, imposing gate that stands between you and your goal.", [linus_torvalds], [])
-merchant_scene = Scene("Merchant's Hideout", "A hidden hideout where the Merchant of Death resides.", [merchant_of_death], [])
+sub_graphic = r"""                                    +              #####
+                                   / \
+ _____        _____     __________/ o \/\_________      _________
+|o o o|_______|    |___|               | | # # #  |____|o o o o  | /\
+|o o o|  * * *|: ::|. .|               |o| # # #  |. . |o o o o  |//\\
+|o o o|* * *  |::  |. .| []  []  []  []|o| # # #  |. . |o o o o  |((|))
+|o o o|**  ** |:  :|. .| []  []  []    |o| # # #  |. . |o o o o  |((|))
+|_[]__|__[]___|_||_|__<|____________;;_|_|___/\___|_.|_|____[]___|  |
+"""
+forest_graphic = r"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⣼⣦⠀⠀⣠⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣆⠀⠀⠀⠀⠀
+⠀⠀⠒⣿⣿⣿⠓⠀⠀⠻⣿⣿⠀⢀⣴⣿⣦⡀⠀⢀⣾⣦⠘⢿⣿⣧⡀⠀⠀⠀
+⠀⢀⣴⣿⡿⠃⡄⠈⠻⣿⣟⣉⣀⠉⣽⡿⠋⠡⠴⣿⣿⣿⠓⠀⠙⢇⠀⠀⠀⠀
+⠀⠿⣿⠟⢁⣾⣿⣦⣀⠘⠿⠟⢁⣼⣿⣿⣷⠂⣴⣿⣿⣿⣆⠘⢶⣶⣿⠶⠤⠀
+⠀⣀⣀⡀⢉⣿⣿⣿⡍⠀⢀⣀⠙⢻⠿⢋⣤⣾⣿⣿⣿⣿⣿⣷⣄⠙⢿⣦⡀⠀
+⠀⠟⠋⣠⣾⣿⣿⣿⣿⣦⣌⠉⠠⣤⣤⣤⡌⢙⣿⣿⣿⣿⣿⣿⠛⠛⠂⢈⣙⠀
+⠀⠀⣉⡉⣹⣿⣿⣿⣿⣏⠉⣉⣀⣈⠙⠋⣠⣿⣿⣿⣿⣿⣿⣿⣆⠙⠛⠛⠛⠀
+⠀⠀⠋⣴⣿⣿⣿⣿⣿⣿⣷⣌⠉⢁⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀
+⠀⠴⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠦⠈⣙⠛⠛⠛⠛⠛⠛⠛⠛⣉⣉⠁⠀⠀⠀
+⠀⠀⣦⣤⡄⢉⣉⣉⣉⠉⣡⣤⠀⠀⠀⣿⣿⣷⠀⢰⣿⣿⡇⢸⣿⣿⠀⠀⠀⠀
+⠀⠀⣿⣿⡇⣸⣿⣿⣿⡄⢻⣿⠀⠀⠀⣿⣿⣿⠀⢸⣿⣿⡇⢸⣿⣿⠀⠀⠀⠀
+⠀⠀⣿⣿⠁⣿⣿⣿⣿⡇⠸⠿⠀⠀⠀⣿⣿⣿⠀⢸⣿⣿⣇⠸⣿⣿⠀⠀⠀⠀
+⠀⠀⠛⠛⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠉⠉⠉⠀⢸⣿⣿⣿⠀⠿⠿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠛⠛⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀
+"""
+gate_graphic = r"""                                  {} {}
+                            !  !  II II  !  !
+                         !  I__I__II II__I__I  !
+                         I_/|--|--|| ||--|--|\_I
+        .-'"'-.       ! /|_/|  |  || ||  |  |\_|\ !       .-'"'-.
+       /===    \      I//|  |  |  || ||  |  |  |\\I      /===    \
+       \==     /   ! /|/ |  |  |  || ||  |  |  | \|\ !   \==     /
+        \__  _/    I//|  |  |  |  || ||  |  |  |  |\\I    \__  _/
+         _} {_  ! /|/ |  |  |  |  || ||  |  |  |  | \|\ !  _} {_
+        {_____} I//|  |  |  |  |  || ||  |  |  |  |  |\\I {_____}
+   !  !  |=  |=/|/ |  |  |  |  |  || ||  |  |  |  |  | \|\=|-  |  !  !
+  _I__I__|=  ||/|  |  |  |  |  |  || ||  |  |  |  |  |  |\||   |__I__I_
+  -|--|--|-  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||=  |--|--|-
+  _|__|__|   ||_|__|__|__|__|__|__|| ||__|__|__|__|__|__|_||-  |__|__|_
+  -|--|--|   ||-|--|--|--|--|--|--|| ||--|--|--|--|--|--|-||   |--|--|-
+   |  |  |=  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   |  |  |
+   |  |  |   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||=  |  |  |
+   |  |  |-  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   |  |  |
+   |  |  |   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||=  |  |  |
+   |  |  |=  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   |  |  |
+   |  |  |   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   |  |  |
+   |  |  |   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||-  |  |  |
+  _|__|__|   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||=  |__|__|_
+  -|--|--|=  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   |--|--|-
+  _|__|__|   ||_|__|__|__|__|__|__|| ||__|__|__|__|__|__|_||-  |__|__|_
+  -|--|--|=  ||-|--|--|--|--|--|--|| ||--|--|--|--|--|--|-||=  |--|--|-
+   |  |  |-  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||-  |  |  |
+ ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^~~~~~~~~~~~
+"""
+merchant_graphic = r"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣷⣄⠙⠛⠛⠿⠿⠿⠟⢁⡄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⠘⠛⠿⢿⣿⠿⠻⣿⣿⣿⣿⣶⣶⣶⣦⣴⣿⣷⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣷⣶⣤⣤⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀
+⠀⠀⠀⠀⠐⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢋⣀⠈⢿⣿⡟⢻⣿⣿⠀
+⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣠⣤⣼⣿⣿⠀
+⠀⠀⠀⢀⣠⣤⠈⠿⠿⠟⢋⣠⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀
+⠀⠀⠐⣿⣿⣿⣷⣶⣤⣶⣿⣿⣿⣿⣿⣿⠟⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀
+⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠈⠙⠻⠿⠿⠿⣿⡿⣿⣿⣿⠀
+⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⠛⠀⠀⠀⠀⠀⠀⢤⣶⣦⣀⣤⣿⣿⣿⠀
+⠀⣠⣾⣿⡿⠿⠿⠿⠛⠋⠙⠋⠀⠸⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⠀
+⠀⣿⣿⣿⣿⣶⣶⣶⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⢋⣡⠀
+⠀⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠛⠛⠛⠛⠛⠛⠀
+"""
+suburban_neighborhood = Scene("Suburban Neighborhood", "A quiet suburban neighborhood with neatly trimmed lawns and white picket fences.", [terry_davis], [], sub_graphic)
+forest = Scene("Forest", "A dense forest with towering trees and the sound of birds chirping.", [chris_chan], [], forest_graphic)
+locked_gate = Scene("Locked Gate", "A large, imposing gate that stands between you and your goal.", [linus_torvalds], [], gate_graphic)
+merchant_scene = Scene("Merchant's Hideout", "A hidden hideout where the Merchant of Death resides.", [merchant_of_death], [], merchant_graphic)
 
 # Player Setup
+knight_graphic = r"""
+           *     ,MMM8&&&.            *
+                MMMM88&&&&&    .
+               MMMM88&&&&&&&
+   *           MMM88&&&&&&&&
+               MMM88&&&&&&&&
+               'MMM88&&&&&&'
+                 'MMM8&&&'      *
+
+|\    *        //         .           *
+ \\           _!_
+  \\         /___\
+   \\        [+++]
+    \\    _ _\^^^/_ _
+     \\/ (    '-'  ( )
+     /( \/ | {&}   /\ \
+       \  / \     / _> )
+        "`   >:::;-'`""'-.
+            /:::/         \
+           /  /||   {&}   |
+          (  / (\         /
+          / /   \'-.___.-'
+        _/ /     \ \
+       /___|    /___|
+"""
 while(True):
     print("_______   ________  ________  ________")
     print("_______   ________  ________  ________")
@@ -64,6 +160,12 @@ while(True):
     elif len(player_name) <= 1:
         print("Your name is too short! Please choose a longer name.")
     else:
+        print(knight_graphic)
+        print(f"Good luck on your journey, {player_name.title()}!")
+        for i in range(3):
+            sleep(1)
+            print(".")
+        sleep(1)
         break
 player = Player(player_name, 100, 10, [])
 
@@ -94,17 +196,18 @@ def game_loop():
     global current_scene
     current_scene.describe()
     while True:
-        action = input("\nWhat would you like to do? (move/interact/pickup/use/stats/scene): ").lower()
+        action = input("\nWhat would you like to do? (move/interact/pickup/use/stats): ").lower()
         
         if action == "move":
-            destination = input("Where would you like to go? (forest/locked gate/suburban neighborhood/merchant): ").lower()
+            print(f"You are currently in the {current_scene.name}.")
+            destination = input("Where would you like to go? (forest/gate/neighborhood/hideout): ").lower()
             if destination == "forest":
                 move_to_scene(forest)
-            elif destination == "locked gate":
+            elif destination == "gate":
                 move_to_scene(locked_gate)
-            elif destination == "suburban neighborhood":
+            elif destination == "neighborhood":
                 move_to_scene(suburban_neighborhood)
-            elif destination == "merchant":
+            elif destination == "hideout":
                 move_to_scene(merchant_scene)
             else:
                 print("Invalid destination.")
@@ -141,9 +244,6 @@ def game_loop():
         
         elif action == "stats":
             player.show_stats()
-        
-        elif action == "scene":
-            print(f"You are currently in the {current_scene.name}.")
 
         elif action == "die":
             death_screen()
