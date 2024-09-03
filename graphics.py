@@ -71,15 +71,7 @@ merchant_graphic = r"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠛⠛⠛⠛⠛⠛⠀
 """
 knight_graphic = r"""
-           *     ,MMM8&&&.            *
-                MMMM88&&&&&    .
-               MMMM88&&&&&&&
-   *           MMM88&&&&&&&&
-               MMM88&&&&&&&&
-               'MMM88&&&&&&'
-                 'MMM8&&&'      *
-
-|\    *        //         .           *
+|\             //                      
  \\           _!_
   \\         /___\
    \\        [+++]
@@ -115,6 +107,13 @@ credits_text = r"""
  / _  | / // / _         /    / / _ `// __/ / _ \/ _ `/ / _ \      / /|_/ /  _ 
 /____/  \_, / (_)       /_/|_/  \_,_/ \__/ /_//_/\_,_/ /_//_/     /_/  /_/  (_)
        /___/                                                                   
+"""
+
+intro_text = """
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Welcome to The Game! You are a young adventurer who has just started their journey. You are on a quest to find the legendary binary tree of life.
+You will encounter many challenges and obstacles on your journey, but with courage and determination, you will be able to overcome them all.
+-------------------------------------------------------------------------------------------------------------------------------------------------
 """
 
 death_text = r"""

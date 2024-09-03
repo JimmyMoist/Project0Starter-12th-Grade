@@ -1,4 +1,4 @@
-#TODO: make random items in each scene, make an ending for the game, make a combat system, make a selling system
+#TODO: make random damage/heal items in each scene, make an ending for the game, make a combat system, make a selling system
 
 from player import Player
 from character import Character
@@ -12,33 +12,35 @@ print(title_text, end="")
 
 print(credits_text)
 
-print("-------------------------------------------------------------------------------------------------------------------------------------------------")
-print("Welcome to The Game! You are a young adventurer who has just started their journey. You are on a quest to find the legendary binary tree of life.\nYou will encounter many challenges and obstacles on your journey, but with courage and determination, you will be able to overcome them all.")
-print("-------------------------------------------------------------------------------------------------------------------------------------------------")
+print(intro_text)
 
 # Items
 commodore_64 = Item("Commodore 64", 100, "An old-ass computer")
 sonic_memorabilia = Item("Sonic Memorabilia", 10, "A mini-figure of Sonic the Hedgehog")
 unix_based_operating_system = Item("UNIX-based operating system", 10, "An operating system developed in the 1970s")
 
+stick = Damage_Item("Stick", 5, "A regular stick from a regular tree", 10)
 sword = Damage_Item("Sword", 10, "A super sharp sword", 10)
 glock = Damage_Item("Glock", 100, "A gun... how did that get there?", 100)
 grenade = Damage_Item("Grenade", 30, "A grenade", 50)
 
+shasta = Heal_Item("Shasta", 10, "A can of Shasta", 10)
+water_bottle = Heal_Item("Water Bottle", 10, "A water bottle", 10)
+blood_of_christ = Heal_Item("Blood of Christ", 10, "A chalice filled with the blood of Jesus Christ himself", 100000000000)
 coffee = Heal_Item("Coffee", 10, "A cup of coffee that's gone a bit stale", 10)
 comic_book = Heal_Item("Comic Book", 10, "A comic book with some sticky pages", 10)
 
 # Characters
-terry_davis = Character("Terry Davis", "A man who is a bit of a nut", [commodore_64, coffee], 9999999999, 9999999999, "hi i'm terry davis i'm the guy who made templeos", "holy shit what the fuck are these stats")
-chris_chan = Character("Chris Chan", "He may or may not have done some outlandish shit", [comic_book, sonic_memorabilia], 100, 10, "Hello, I’m Chris Chan! If you’re a fan of classic comics and Sonic memorabilia, then we’re already on the same page. My life’s a bit like a comic book—full of twists, turns, and the occasional super-powered hedgehog. So, pull up a chair and let’s dive into some nostalgic fun together!", "human")
+terry_davis = Character("Terry Davis", "A man who is a bit of a nut", [commodore_64, coffee], 9999999999, 9999999999, "hi i'm terry davis i'm the guy who made templeos", "holy shit what are these stats")
+chris_chan = Character("Chris Chan", "He may have done some outlandish things", [comic_book, sonic_memorabilia], 100, 10, "Hello, I’m Chris Chan! If you’re a fan of classic comics and Sonic memorabilia, then we’re already on the same page. My life’s a bit like a comic book—full of twists, turns, and the occasional super-powered hedgehog. So, pull up a chair and let’s dive into some nostalgic fun together!", "human")
 linus_torvalds = Character("Linus Torvalds", "Don't break userspace around him", [unix_based_operating_system, glock], 100, 10, "Greetings, I’m Linus Torvalds, the guy who thinks a Unix-based system can solve nearly anything, as long as you’ve got the right mindset. And yes, I’ve got a Glock for when things get intense. Don’t worry, it’s metaphorical—just a reminder that even in the tech world, you’ve got to be prepared for anything. Ready to dive into the power of Unix?", "human")
 merchant_of_death = Character("Merchant", "Got traded for Brittney Griner", [sword, grenade], 100, 10, "I am the Merchant of Death, and let’s just say I have a flair for the dramatic. Whether it's a sword or a grenade, I’ve got the tools to make a statement. Life’s short, so why not live it on the edge? If you’re looking for excitement, danger, and maybe a touch of chaos, you’ve come to the right place. Now, who’s up for a bit of mayhem?", "death")
 
 # Scenes
-suburban_neighborhood = Scene("Suburban Neighborhood", "A quiet suburban neighborhood with neatly trimmed lawns and white picket fences.", [terry_davis], [], sub_graphic)
-forest = Scene("Forest", "A dense forest with towering trees and the sound of birds chirping.", [chris_chan], [], forest_graphic)
-locked_gate = Scene("Locked Gate", "A large, imposing gate that stands between you and your goal.", [linus_torvalds], [], gate_graphic)
-merchant_scene = Scene("Merchant's Hideout", "A hidden hideout where the Merchant of Death resides.", [merchant_of_death], [], merchant_graphic)
+suburban_neighborhood = Scene("Suburban Neighborhood", "A quiet suburban neighborhood with neatly trimmed lawns and white picket fences.", [terry_davis], [shasta], sub_graphic)
+forest = Scene("Forest", "A dense forest with towering trees and the sound of birds chirping.", [chris_chan], [stick, water_bottle], forest_graphic)
+locked_gate = Scene("Locked Gate", "A large, imposing gate that stands between you and your goal.", [linus_torvalds], [coffee], gate_graphic)
+merchant_scene = Scene("Merchant's Hideout", "A hidden hideout where the Merchant of Death resides.", [merchant_of_death], [blood_of_christ], merchant_graphic)
 
 # Player Setup
 while(True):

@@ -26,7 +26,7 @@ class Damage_Item(Item):
         self.check_damage()
 
     def use(self):
-        print(f"You used {self.name}.")
+        print(f"You equipped the {self.name}.")
         print(f"You did {self.damage} damage.")
 
 
@@ -44,4 +44,4 @@ class Heal_Item(Item):
 
     def use(self):
         print(f"You used {self.name}.")
-        print(f"You healed {self.health} HP.")
+        print(f"You gained {self.health} HP.")
