@@ -9,9 +9,8 @@ class Item:
         print(f"Price: {self.price}")
         print(f"Description: {self.desc}")
 
-    def use(self):
-        print(f"You used {self.name}.")
-
+    def use(self, player):
+        print(f"{player.name} used {self.name}.")
 
 class Damage_Item(Item):
     def __init__(self, name, price, desc, damage):
@@ -21,14 +20,11 @@ class Damage_Item(Item):
     def check_damage(self):
         print(f"Damage: {self.damage}")
 
-    def check_stats(self):
-        self.check()
-        self.check_damage()
-
-    def use(self):
-        print(f"You equipped the {self.name}.")
+    def attack(self, target):
+        print(f"You attacked {target.name} with {self.name}.")
         print(f"You did {self.damage} damage.")
-
+        target.hp -= self.damage
+        target.check_health()
 
 class Heal_Item(Item):
     def __init__(self, name, price, desc, health):
@@ -38,10 +34,6 @@ class Heal_Item(Item):
     def check_health(self):
         print(f"Health: {self.health}")
 
-    def check_stats(self):
-        self.check()
-        self.check_health()
-
-    def use(self):
-        print(f"You used {self.name}.")
-        print(f"You gained {self.health} HP.")
+    def use(self, player):
+        print(f"{player.name} used {self.name} and healed {self.health} HP.")
+        player.hp += self.health
