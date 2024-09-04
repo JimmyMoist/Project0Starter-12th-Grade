@@ -157,7 +157,7 @@ def game_loop():
             player.show_stats()
 
         elif action == "die":
-            death_screen()
+            player.death_screen()
 
         else:
             print("Invalid action.")
