@@ -10,7 +10,7 @@ class Item:
         print(f"Description: {self.desc}")
 
     def use(self, player):
-        print(f"{player.name} used {self.name}.")
+        print(f"{player.name} looked at the {self.name}. It seems important.")
 
 class Damage_Item(Item):
     def __init__(self, name, price, desc, damage):
@@ -35,5 +35,5 @@ class Heal_Item(Item):
         print(f"Health: {self.health}")
 
     def use(self, player):
-        print(f"{player.name} used {self.name} and healed {self.health} HP.")
+        print(f"{player.name} used {self.name} and gained {self.health} HP.")
         player.hp += self.health

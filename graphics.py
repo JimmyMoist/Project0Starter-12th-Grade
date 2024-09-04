@@ -88,8 +88,7 @@ knight_graphic = r"""
        /___|    /___|
 """
 
-binary_tree_graphic = r"""
-/
+binary_tree_graphic = r"""/
 ├── bin
 ├── boot
 │   └── grub
@@ -104,6 +103,19 @@ binary_tree_graphic = r"""
             ├── 001
             └── 002
                 └── credits: Nathan Margolis
+"""
+
+cat_graphic = r"""
+   |\__/,|   (`\
+   |o o  |__ _)
+ _.( T   )  `  /
+((_ `^--' /_<  \
+`` `-'(((/  (((/
+
+ |\__/,|   (`\
+ |_ _  |.--.) )
+ ( T   )     /
+(((^_(((/(((_/
 """
 
 # Text ----------------------------------------------------------------------------------------------------------------------------
@@ -127,8 +139,7 @@ credits_text = r"""
        /___/                                                                   
 """
 
-intro_text = """
--------------------------------------------------------------------------------------------------------------------------------------------------
+intro_text = """-------------------------------------------------------------------------------------------------------------------------------------------------
 Welcome to The Game! You are a young adventurer who has just started their journey. You are on a quest to find the legendary binary tree of life.
 You will encounter many challenges and obstacles on your journey, but with courage and determination, you will be able to overcome them all.
 -------------------------------------------------------------------------------------------------------------------------------------------------

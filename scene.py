@@ -7,7 +7,7 @@ class Scene:
         self.graphic = graphic
 
     def describe(self):
-        print(f"\n--- {self.name} ---")
+        print(f"--- {self.name} ---")
         print(self.graphic)
         print(self.desc)
         print(f"Characters: {[char.name for char in self.characters]}")
