@@ -11,14 +11,12 @@ class Item:
 
     def use(self, player):
         print(f"{player.name} looked at the {self.name}. It seems important.")
+        self.check()
 
 class Damage_Item(Item):
     def __init__(self, name, price, desc, damage):
         super().__init__(name, price, desc)
         self.damage = damage
-
-    def check_damage(self):
-        print(f"Damage: {self.damage}")
 
     def attack(self, target):
         print(f"You attacked {target.name} with {self.name}.")
@@ -26,13 +24,15 @@ class Damage_Item(Item):
         target.hp -= self.damage
         target.check_health()
 
+    def use(self, player):
+        print(f"{player.name} looked at the {self.name}.")
+        super().check()
+        print(f"Damage: {self.damage}")
+
 class Heal_Item(Item):
     def __init__(self, name, price, desc, health):
         super().__init__(name, price, desc)
         self.health = health
-
-    def check_health(self):
-        print(f"Health: {self.health}")
 
     def use(self, player):
         print(f"{player.name} used {self.name} and gained {self.health} HP.")

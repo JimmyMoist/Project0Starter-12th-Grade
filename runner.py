@@ -1,3 +1,5 @@
+#add inspecting items
+
 from player import Player
 from character import Character
 from item import *
@@ -30,8 +32,8 @@ comic_book = Heal_Item("Comic Book", 10, "A comic book with some sticky pages", 
 
 # Characters
 terry_davis = Character("Terry Davis", "A man who is a bit of a nut", [commodore_64, coffee], 9999999999, 9999999999, "hi i'm terry davis i'm the guy who made templeos", "holy shit what are these stats", 9999999999)
-chris_chan = Character("Chris Chan", "He may have done some outlandish things", [comic_book, sonic_memorabilia], 100, 10, "Hello, I’m Chris Chan! If you’re a fan of classic comics and Sonic memorabilia, then we’re already on the same page. My life’s a bit like a comic book—full of twists, turns, and the occasional super-powered hedgehog. So, pull up a chair and let’s dive into some nostalgic fun together!", "human", 10)
-linus_torvalds = Character("Linus Torvalds", "Don't break userspace around him", [unix_based_operating_system, glock], 100, 10, "Greetings, I’m Linus Torvalds, the guy who thinks a Unix-based system can solve nearly anything, as long as you’ve got the right mindset. And yes, I’ve got a Glock for when things get intense. Don’t worry, it’s metaphorical—just a reminder that even in the tech world, you’ve got to be prepared for anything. Ready to dive into the power of Unix?", "human", 10)
+chris_chan = Character("Chris Chan", "He may have done some outlandish things", [comic_book, sonic_memorabilia], 100, 10, "Hello, I’m Chris Chan! If you’re a fan of classic comics and Sonic memorabilia, then we’re already on the same page. My life’s a bit like a comic book—full of twists, turns, and the occasional super-powered hedgehog. So, pull up a chair and let’s dive into some nostalgic fun together!", "human", 100)
+linus_torvalds = Character("Linus Torvalds", "Don't break userspace around him", [unix_based_operating_system, glock], 100, 10, "Greetings, I’m Linus Torvalds, the guy who thinks a Unix-based system can solve nearly anything, as long as you’ve got the right mindset. And yes, I’ve got a Glock for when things get intense. Don’t worry, it’s metaphorical—just a reminder that even in the tech world, you’ve got to be prepared for anything. Ready to dive into the power of Unix?", "human", 40)
 merchant_of_death = Character("Merchant", "Got traded for Brittney Griner", [sword, grenade], 100, 10, "I am the Merchant of Death, and let’s just say I have a flair for the dramatic. Whether it's a sword or a grenade, I’ve got the tools to make a statement. Life’s short, so why not live it on the edge? If you’re looking for excitement, danger, and maybe a touch of chaos, you’ve come to the right place. Now, who’s up for a bit of mayhem?", "death", 20)
 
 # Scenes
@@ -59,7 +61,7 @@ while(True):
         sleep(1)
         break
 
-player = Player(player_name, 100, 10, [commodore_64, sonic_memorabilia, unix_based_operating_system, glock])
+player = Player(player_name, 100, 10, [commodore_64])
 
 # Game Loop
 current_scene = suburban_neighborhood
