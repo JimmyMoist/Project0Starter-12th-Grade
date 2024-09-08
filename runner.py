@@ -1,5 +1,3 @@
-#add inspecting items
-
 from player import Player
 from character import Character
 from item import *
@@ -61,7 +59,7 @@ while(True):
         sleep(1)
         break
 
-player = Player(player_name, 100, 10, [commodore_64])
+player = Player(player_name, 100, 10, [])
 
 # Game Loop
 current_scene = suburban_neighborhood
@@ -115,10 +113,13 @@ def game_loop():
                             print(f"{idx}. {item.name} - {item.price} currency")
                         print("\n")
                         item_choice = int(input("Enter the !!!NUMBER!!! of the item you'd like to purchase: "))
-                        if 1 <= item_choice <= len(character.inv):
-                            player.purchase_item(character.inv[item_choice - 1])
-                        else:
-                            print("Invalid choice.")
+                        try:
+                            if 1 <= item_choice <= len(character.inv):
+                                player.purchase_item(character.inv[item_choice - 1])
+                            else:
+                                print("Invalid choice.")
+                        except ValueError:
+                            print("Invalid input.")
                     elif action == "sell":
                         print("Player Inventory:")
                         for idx, item in enumerate(player.inv, start=1):

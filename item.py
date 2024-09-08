@@ -36,4 +36,5 @@ class Heal_Item(Item):
 
     def use(self, player):
         print(f"{player.name} used {self.name} and gained {self.health} HP.")
+        player.inv.remove(self)
         player.hp += self.health
