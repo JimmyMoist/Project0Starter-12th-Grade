@@ -18,7 +18,7 @@ class Character:
                            f'Power: {self.power}\n'
                            f'Race: {self.race}')
         print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-        print(section_content)
+        print(section_content) # The CIA glow in the dark
         print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
 
     def check_health(self, current_scene):
@@ -58,7 +58,6 @@ class Character:
             self.hp -= enemy.pwr
             self.check_health(current_scene)
             if self.hp <= 0:
-                print(f"{self.name} has been defeated.")
                 enemy.currency += self.currency
                 print(f"{enemy.name} has gained {self.currency} currency.")
                 for item in self.inv:

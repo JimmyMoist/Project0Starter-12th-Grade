@@ -139,6 +139,7 @@ credits_text = r"""
        /___/                                                                   
 """
 
+# AI-generated intro
 intro_text = """-------------------------------------------------------------------------------------------------------------------------------------------------
 Welcome to The Game! You are a young adventurer who has just started their journey. You are on a quest to find the legendary binary tree of life.
 You will encounter many challenges and obstacles on your journey, but with courage and determination, you will be able to overcome them all.

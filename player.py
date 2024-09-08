@@ -45,8 +45,8 @@ class Player:
     def purchase_item(self, item):
         if self.currency >= item.price:
             self.currency -= item.price
-            self.add_item(item)
             print(f"Purchased {item.name} for {item.price} currency.")
+            self.add_item(item)
         else:
             print("Not enough currency to purchase this item.")
 

@@ -1,3 +1,5 @@
+# Created by: Nathan M.
+
 from player import Player
 from character import Character
 from item import *
@@ -12,13 +14,13 @@ print(credits_text)
 
 print(intro_text)
 
-# Items
+# Items (All AI-generated except for the stick)
 commodore_64 = Item("Commodore 64", 100, "An old-ass computer")
 sonic_memorabilia = Item("Sonic Memorabilia", 10, "A mini-figure of Sonic the Hedgehog")
 unix_based_operating_system = Item("UNIX-based operating system", 10, "An operating system developed in the 1970s")
 
 stick = Damage_Item("Stick", 5, "A regular stick from a regular tree", 10)
-sword = Damage_Item("Sword", 10, "A super sharp sword", 10)
+sword = Damage_Item("Sword", 10, "A super sharp sword", 20)
 glock = Damage_Item("Glock", 100, "A gun... how did that get there?", 100)
 grenade = Damage_Item("Grenade", 30, "A grenade", 50)
 
@@ -112,13 +114,13 @@ def game_loop():
                         for idx, item in enumerate(character.inv, start=1):
                             print(f"{idx}. {item.name} - {item.price} currency")
                         print("\n")
-                        item_choice = int(input("Enter the !!!NUMBER!!! of the item you'd like to purchase: "))
-                        try:
-                            if 1 <= item_choice <= len(character.inv):
-                                player.purchase_item(character.inv[item_choice - 1])
+                        item_choice = input("Enter the !!!NUMBER!!! of the item you'd like to purchase: ")
+                        if item_choice.isdigit():
+                            if 1 <= int(item_choice) <= len(character.inv):
+                                player.purchase_item(character.inv[int(item_choice) - 1])
                             else:
                                 print("Invalid choice.")
-                        except ValueError:
+                        else:
                             print("Invalid input.")
                     elif action == "sell":
                         print("Player Inventory:")
@@ -126,11 +128,14 @@ def game_loop():
                             print(f"{idx}. {item.name} - {item.price} currency")
                         print("\n")
                         print(f"Character Currency: {character.currency}")
-                        item_choice = int(input("Enter the !!!NUMBER!!! of the item you'd like to sell: "))
-                        if 1 <= item_choice <= len(player.inv):
-                            player.sell_item(player.inv[item_choice - 1], character)
+                        item_choice = input("Enter the !!!NUMBER!!! of the item you'd like to sell: ")
+                        if item_choice.isdigit():
+                            if 1 <= item_choice <= len(player.inv):
+                                player.sell_item(player.inv[int(item_choice) - 1], character)
+                            else:
+                                print("Invalid choice.")
                         else:
-                            print("Invalid choice.")
+                            print("Invalid input.")
                     elif action == "fight":
                         character.fight(player, current_scene)
                     elif action == "leave":
